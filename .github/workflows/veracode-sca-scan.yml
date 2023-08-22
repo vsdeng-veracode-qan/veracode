@@ -18,6 +18,7 @@ jobs:
         repo: ${{ github.event.client_payload.repository.full_name }}
         sha: ${{ github.event.client_payload.sha }}
         name: "Veracode Component Analysis"
+        status: 'in_progress'
     - name: Create metadata
       id: create_metadata_json
       run: |
