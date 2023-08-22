@@ -20,37 +20,5 @@ jobs:
         sha: ${{ github.event.client_payload.sha }}
         name: ${{ env.name || github.workflow }}
         status: 'in_progress'
-    - name: Create metadata
-      id: create_metadata_json
-      run: |
-        echo '{
-          "check_run_type": "${{ github.event.client_payload.event_type }}",
-          "repository_name": "${{ github.event.client_payload.repository.name }}",
-          "check_run_id": ${{ steps.create_checks_run.outputs.check_id }}
-        }' > workflow-metadata.json
-    - name: Save metadata
-      uses: actions/upload-artifact@v3
-      with:
-        name: workflow-metadata
-        path: workflow-metadata.json
-       
-  veracode-not-supported:
-    needs: [create-checks-run]
-    runs-on: ubuntu-latest
-    name: Veracode - SAST/SCA Not Supported Repository 
-
-    steps:
-      - name: Display error message
-        run: |
-          echo "Veracode SAST/SCA is not supported for this repository."
-          echo "Please contact your Veracode administrator for more information."
-          echo "If you are a Veracode administrator, please contact Veracode support."
-          echo "Veracode SAST/SCA is not supported for this repository." > error.txt
-          echo "Please contact your Veracode administrator for more information." >> error.txt
-          echo "If you are a Veracode administrator, please contact Veracode support." >> error.txt
-      - name: save results file
-        uses: actions/upload-artifact@v3
-        with:
-          name: veracode-error
-          path: error.txt
-
+        output: |
+          {"summary":"Veracode SAST/SCA is not supported for this repository.\nPlease contact your Veracode administrator for more information.\nIf you are a Veracode administrator, please contact Veracode support."}
