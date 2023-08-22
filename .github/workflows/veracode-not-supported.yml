@@ -19,6 +19,7 @@ jobs:
         repo: ${{ github.event.client_payload.repository.full_name }}
         sha: ${{ github.event.client_payload.sha }}
         name: ${{ env.name || github.workflow }}
-        status: 'in_progress'
+        status: completed
+        conclusion: success
         output: |
           {"summary":"Veracode SAST/SCA is not supported for this repository.\nPlease contact your Veracode administrator for more information.\nIf you are a Veracode administrator, please contact Veracode support."}
