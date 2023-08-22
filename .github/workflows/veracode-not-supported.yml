@@ -18,7 +18,7 @@ jobs:
         token: ${{ github.event.client_payload.token }}
         repo: ${{ github.event.client_payload.repository.full_name }}
         sha: ${{ github.event.client_payload.sha }}
-        name: "Veracode - SAST/SCA Not Supported Repository"
+        name: ${{ env.name || github.workflow }}
         status: 'in_progress'
     - name: Create metadata
       id: create_metadata_json
