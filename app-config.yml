@@ -1,1 +1,1 @@
-scan_config_file_location: ".config/veracode.yml"
+scan_config_file_location: "veracode.yml"
