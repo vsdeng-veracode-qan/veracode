@@ -16,7 +16,8 @@ veracode_sast_pipeline_scan:
       - default_branch 
   issue:
     trigger: true
-    command: "Veracode Pipeline Scan"
+    commands: 
+      - "Veracode Pipeline Scan"
     branch_to_run:
       - default_branch
   #If the break_build_policy_findings is set to true, the build will break if the pipeline scan finds any policy violations.      
@@ -47,7 +48,8 @@ veracode_sast_policy_scan:
       - default_branch
   issue:
     trigger: true
-    command: "Veracode Policy Scan"
+    commands: 
+      - "Veracode Policy Scan"
     branch_to_run:
       - default_branch
   #If the break_build_policy_findings is set to true, the build will break if the pipeline scan finds any policy violations.      
@@ -78,7 +80,8 @@ veracode_sca_scan:
       - default_branch
   issue:
     trigger: true
-    command: "Veracode SCA Scan"
+    commands: 
+      - "Veracode SCA Scan"
     branch_to_run:
       - default_branch
   #If the break_build_policy_findings is set to true, the build will break if the SCA scan finds any policy violations.      
@@ -106,7 +109,8 @@ veracode_iac_secrets_scan:
       - default_branch
   issue:
     trigger: true
-    command: "Veracode IaC Secret Scan"
+    commands: 
+      - "Veracode IaC Secret Scan"
     branch_to_run:
       - default_branch
   #If the break_build_policy_findings is set to true, the build will break if the IaC/Secrets scan finds any policy violations.      
