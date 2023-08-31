@@ -1,1 +1,1 @@
-scan_config_file_location=.config/
+scan_config_file_location: ".config/"
