@@ -20,6 +20,7 @@ jobs:
         sha: ${{ github.event.client_payload.sha }}
         name: ${{ env.name || github.workflow }}
         status: completed
+        details_url: "https://github.com/${{ github.event.client_payload.repository.owner }}/veracode/actions/runs/${{ github.run_id }}"
         conclusion: success
         output: |
           {"summary":"Veracode SAST/SCA is not supported for this repository.\nPlease contact your Veracode administrator for more information.\nIf you are a Veracode administrator, please contact Veracode support."}
