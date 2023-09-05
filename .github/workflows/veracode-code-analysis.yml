@@ -11,7 +11,7 @@ jobs:
     name: Create Checks Run
     runs-on: ubuntu-latest
     steps:
-    - uses: vincent-deng/checks-action@main
+    - uses: vincent-deng/veracode-checks-action@main
       name: Create Checks Run
       id: create_checks_run
       with:
