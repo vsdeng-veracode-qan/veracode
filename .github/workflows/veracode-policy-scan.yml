@@ -46,5 +46,5 @@ jobs:
           scantimeout: 15
           include: ${{ inputs.moddules_to_scan }}
           failbuild: true
-          teams: "Team 7"
+          teams: "Team 7, Team 5"
         
