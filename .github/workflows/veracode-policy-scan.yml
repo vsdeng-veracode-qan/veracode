@@ -32,14 +32,14 @@ jobs:
           echo "veracode_artifact=$artifact_file" >> $GITHUB_ENV
       # run the policy scan action
       - name: Veracode Upload and Scan Action Step
-        uses: veracode/uploadandscan-action@main
+        uses: veracode/uploadandscan-action@allow-multiple-files-upload
         id: upload_and_scan
         with:
           appname: ${{ inputs.profile_name }}
           createprofile: true
           policy: 'Verademo Policy'
           version: '${{ github.run_id }}'
-          filepath: ./veracode_artifact_directory/${{ env.veracode_artifact }}
+          filepath: ./veracode_artifact_directory/*
           vid: '${{ secrets.API_ID }}'
           vkey: '${{ secrets.API_KEY }}'
           #scanpollinginterval: 30
