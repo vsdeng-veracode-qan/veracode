@@ -15,7 +15,7 @@ on:
       event_name:
         required: true
         type: string
-  
+
 jobs:
   build-java-maven:
     if: ${{ inputs.event_name == 'java-maven-pipeline-scan' || inputs.event_name == 'java-maven-policy-scan' }}
@@ -24,7 +24,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      
+
   build-java-gradle:
     if: ${{ inputs.event_name == 'java-gradle-pipeline-scan' || inputs.event_name == 'java-gradle-policy-scan' }}
     uses: ./.github/workflows/veracode-build-java-gradle.yml
@@ -32,7 +32,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      
+
   build-source-code-scan:
     if: ${{ inputs.event_name == 'source-code-pipeline-scan' || inputs.event_name == 'source-code-policy-scan' }}
     uses: ./.github/workflows/veracode-build-source-code.yml
@@ -40,7 +40,7 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      
+
   build-dot-net-package:
     if: ${{ inputs.event_name == 'dot-net-pipeline-scan' || inputs.event_name == 'dot-net-policy-scan' }}
     uses: ./.github/workflows/veracode-build-dot-net.yml
@@ -48,5 +48,11 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
-      
-      
+
+  build-go-package:
+    if: ${{ inputs.event_name == 'go-pipeline-scan' || inputs.event_name == 'go-policy-scan' }}
+    uses: ./.github/workflows/veracode-build-go.yml
+    with:
+      repository: ${{ inputs.repository }}
+      ref: ${{ inputs.ref }}
+      token: ${{ inputs.token }}

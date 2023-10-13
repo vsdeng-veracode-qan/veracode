@@ -16,22 +16,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    #     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
         with:
           repository: ${{ inputs.repository }}
           ref: ${{ inputs.ref }}
           token: ${{ inputs.token }}
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
         with:
-          dotnet-version: '3.1.x'
-      - name: Build
+          go-version: '1.16.1'
+      - name: Build Go App
         run: |
-          dotnet restore
-          dotnet publish -c Debug -o ./output -p:UseAppHost=false
+          export GOPATH=`go env GOPATH` &&
+          export PATH="$GOPATH/bin:$PATH" &&
+          go install github.com/relaxnow/vcgopkg
+          vcgopkg
       - name: Create zip archive
-        run: zip -r veracode.zip ./output
+        run: zip -r veracode.zip ./veracode
 
       - uses: actions/upload-artifact@v3
         with:
