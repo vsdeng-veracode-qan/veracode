@@ -63,5 +63,5 @@ jobs:
           filepath: ./veracode-artifact/*
           include: ${{ github.event.client_payload.modules_to_scan }}
           policy: VeraDemo Policy
-          scantimeout: 15
+          scantimeout: 60
           failbuild: true
