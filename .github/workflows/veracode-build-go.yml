@@ -34,10 +34,8 @@ jobs:
           export PATH="$GOPATH/bin:$PATH" &&
           go install github.com/relaxnow/vcgopkg
           vcgopkg
-      - name: Create zip archive
-        run: zip -r veracode.zip ./veracode
 
       - uses: actions/upload-artifact@v3
         with:
           name: veracode-artifact
-          path: veracode.zip
+          path: ./veracode
