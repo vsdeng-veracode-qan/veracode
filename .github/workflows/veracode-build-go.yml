@@ -32,6 +32,8 @@ jobs:
         run: |
           export GOPATH=`go env GOPATH` &&
           export PATH="$GOPATH/bin:$PATH" && go install github.com/relaxnow/vcgopkg@latest
+          go mod init github.com/veracode/example-go-goget
+          go mod tidy
           vcgopkg
       - uses: actions/upload-artifact@v3
         with:
