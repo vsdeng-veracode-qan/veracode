@@ -24,17 +24,48 @@ jobs:
           repository: ${{ inputs.repository }}
           ref: ${{ inputs.ref }}
           token: ${{ inputs.token }}
-      - name: Setup Go
+      # - name: Setup Go
+      #   uses: actions/setup-go@v4
+      #   with:
+      #     go-version: 1.21
+      # - name: Build Go App
+      #   run: |
+      #     export GOPATH=`go env GOPATH` &&
+      #     export PATH="$GOPATH/bin:$PATH" && go install github.com/relaxnow/vcgopkg@latest
+      #     go mod init github.com/veracode/example-go-goget
+      #     go mod tidy
+      #     vcgopkg
+      - name: Check if go.mod exists
+        id: check-go-mod
+        run: |
+          if [ -f "go.mod" ]; then
+            echo "go.mod exists"
+            echo "::set-output name=go_mod_exists::true"
+          else
+            echo "go.mod does not exist"
+            echo "::set-output name=go_mod_exists::false"
+          fi
+
+      - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21
-      - name: Build Go App
+          go-version: 1.x
+
+      - name: Install vcgopkg
         run: |
           export GOPATH=`go env GOPATH` &&
           export PATH="$GOPATH/bin:$PATH" && go install github.com/relaxnow/vcgopkg@latest
-          go mod init github.com/veracode/example-go-goget
-          go mod tidy
-          vcgopkg
+
+      - name: Initialize and tidy go mod
+        run: |
+          if [[ "${{ steps.check-go-mod.outputs.go_mod_exists }}" == "false" ]]; then
+            go mod init github.com/veracode/example-go-goget
+            go mod tidy
+          fi
+
+      - name: Run vcgopkg
+        run: vcgopkg
+        
       - uses: actions/upload-artifact@v3
         with:
           name: veracode-artifact
