@@ -37,22 +37,11 @@ jobs:
     - name: Identify the Artifact
       id: identify
       run: |
-        jar_files=$(find target -name "*.jar" -type f -maxdepth 1 -exec basename {} \;)
-        war_files=$(find target -name "*.war" -type f -maxdepth 1 -exec basename {} \;)
-        ear_files=$(find target -name "*.ear" -type f -maxdepth 1 -exec basename {} \;)
-        if [ ! -z "$jar_files" ]; then
-          artifact_file=$jar_files
-        elif [ ! -z "$war_files" ]; then
-          artifact_file=$war_files
-        elif [ ! -z "$ear_files" ]; then
-          artifact_file=$ear_files
-        else
-          echo "no files found"
-        fi
-        echo $artifact_file
-        echo "veracode_artifact=$artifact_file" >> $GITHUB_ENV
+        find . -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
+        find . -name "*.war" -exec mv {} ./veracode_artifacts/ \;
+        find . -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
         
     - uses: actions/upload-artifact@v3
       with:
         name: veracode-artifact
-        path: target/${{ env.veracode_artifact }}
+        path: ./veracode_artifacts/
