@@ -37,9 +37,10 @@ jobs:
     - name: Identify the Artifact
       id: identify
       run: |
-        find . -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
-        find . -name "*.war" -exec mv {} ./veracode_artifacts/ \;
-        find . -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
+        mkdir -p ./veracode_artifacts
+        find . -type f -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
+        find . -type f -name "*.war" -exec mv {} ./veracode_artifacts/ \;
+        find . -type f -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
         
     - uses: actions/upload-artifact@v3
       with:
