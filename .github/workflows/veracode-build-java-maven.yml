@@ -38,9 +38,22 @@ jobs:
       id: identify
       run: |
         mkdir -p ./veracode_artifacts
-        find . -type f -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
-        find . -type f -name "*.war" -exec mv {} ./veracode_artifacts/ \;
-        find . -type f -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
+        packaging_type=$(mvn help:evaluate -Dexpression=project.packaging -q -DforceStdout)
+        artifact_name=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)
+        artifact_extension=".jar"
+
+        if [ "$packaging_type" = "war" ]; then
+          artifact_extension=".war"
+        elif [ "$packaging_type" = "ear" ]; then
+          artifact_extension=".ear"
+        fi
+
+        mvn_artifact=$(mvn help:evaluate -Dexpression=project.build.directory -q -DforceStdout)/"$artifact_name$artifact_extension"
+        echo "Artifact path: $mvn_artifact"
+        mv $mvn_artifact ./veracode_artifacts/
+        # find . -type f -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
+        # find . -type f -name "*.war" -exec mv {} ./veracode_artifacts/ \;
+        # find . -type f -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
         
     - uses: actions/upload-artifact@v3
       with:
