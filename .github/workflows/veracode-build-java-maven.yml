@@ -37,23 +37,41 @@ jobs:
     - name: Identify the Artifact
       id: identify
       run: |
-        mkdir -p ./veracode_artifacts
-        packaging_type=$(mvn help:evaluate -Dexpression=project.packaging -q -DforceStdout)
-        artifact_name=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)
-        artifact_extension=".jar"
+       mkdir -p ./veracode_artifacts
+       # Find all pom.xml files in the current directory and its subdirectories
+       find . -name 'pom.xml' -print0 | while IFS= read -r -d '' pom_file; do
+         # Check if the pom.xml has packaging type "pom" using mvn help:evaluate
+         packaging_type=$(mvn help:evaluate -f "$pom_file" -Dexpression=project.packaging -q -DforceStdout)
+         if [ "$packaging_type" = "pom" ]; then
+           echo "Skipping parent POM: $pom_file"
+           continue
+         fi
 
-        if [ "$packaging_type" = "war" ]; then
-          artifact_extension=".war"
-        elif [ "$packaging_type" = "ear" ]; then
-          artifact_extension=".ear"
+         # Extract final artifact name using mvn help:evaluate
+         artifact_name=$(mvn help:evaluate -f "$pom_file" -Dexpression=project.build.finalName -q -DforceStdout)
+         # Determine the artifact extension based on packaging type
+         case "$packaging_type" in
+           war)
+             artifact_extension=".war"
+             ;;
+           ear)
+             artifact_extension=".ear"
+             ;;
+           *)
+             artifact_extension=".jar"
+             ;;
+         esac
+
+         # Build the path to the artifact
+         mvn_artifact=$(dirname "$pom_file")"/target/$artifact_name$artifact_extension"
+         # Check if the artifact file exists and move it to the target directory
+         if [ -f "$mvn_artifact" ]; then
+           echo "Moving artifact '$mvn_artifact' to ./veracode_artifacts/"
+           mv "$mvn_artifact" ./veracode_artifacts/
+        else
+          echo "Artifact '$mvn_artifact' not found for '$pom_file'"
         fi
-
-        mvn_artifact=$(mvn help:evaluate -Dexpression=project.build.directory -q -DforceStdout)/"$artifact_name$artifact_extension"
-        echo "Artifact path: $mvn_artifact"
-        mv $mvn_artifact ./veracode_artifacts/
-        # find . -type f -name "*.jar" -exec mv {} ./veracode_artifacts/ \;
-        # find . -type f -name "*.war" -exec mv {} ./veracode_artifacts/ \;
-        # find . -type f -name "*.ear" -exec mv {} ./veracode_artifacts/ \;
+       done
         
     - uses: actions/upload-artifact@v3
       with:
