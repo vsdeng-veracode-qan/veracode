@@ -56,6 +56,7 @@ jobs:
       ref: ${{ github.event.client_payload.sha }}
       token: ${{ github.event.client_payload.token }}
       event_name: ${{ github.event.action }}
+    secrets: inherit
 
   pipeline_scan:
     # needs the build step before this job will start running
