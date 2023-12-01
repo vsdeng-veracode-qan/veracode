@@ -16,6 +16,8 @@ on:
         source-code-policy-scan,
         go-policy-scan,
         go-pipeline-scan,
+        dart-policy-scan,
+        dart-pipeline-scan,
       ]
 
 jobs:
