@@ -53,7 +53,7 @@ jobs:
         echo "veracode_artifact=$artifact_file" >> $GITHUB_ENV
     - name: Veracode Pipeline-Scan
       id: pipeline-scan
-      uses: veracode/Veracode-pipeline-scan-action@v1.0.8
+      uses: veracode/Veracode-pipeline-scan-action@v1.0.10
       with:
         vid: ${{ secrets.API_ID }}
         vkey: ${{ secrets.API_KEY }}
