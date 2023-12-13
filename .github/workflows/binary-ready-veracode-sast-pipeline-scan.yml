@@ -44,7 +44,7 @@ jobs:
       id: download-artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-        github_token: ${{secrets.GITHUB_TOKEN}}
+        github_token: ${{ github.event.client_payload.token }}
         run_id: ${{ github.event.client_payload.run_id }}
         repo: ${{ github.event.client_payload.repository.full_name }}
     - name: Get the name of the downloaded files
@@ -59,3 +59,4 @@ jobs:
         vkey: ${{ secrets.API_KEY }}
         file: ./veracode-artifact/${{ env.veracode_artifact }}
         fail_build: true
+        include: Verademo-dotnet.dll
