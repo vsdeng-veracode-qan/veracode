@@ -59,4 +59,4 @@ jobs:
         vkey: ${{ secrets.API_KEY }}
         file: ./veracode-artifact/${{ env.veracode_artifact }}
         fail_build: true
-        include: Verademo-dotnet.dll
+        include: Antlr3.Runtime.dll
