@@ -59,4 +59,4 @@ jobs:
         vkey: ${{ secrets.API_KEY }}
         file: ./veracode-artifact/${{ env.veracode_artifact }}
         fail_build: true
-        include: Antlr3.Runtime.dll
+        include: bin/Antlr3.Runtime.dll
