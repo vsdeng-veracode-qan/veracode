@@ -40,8 +40,8 @@ jobs:
           policy: 'Verademo Policy'
           version: '${{ github.run_id }}'
           filepath: ./veracode_artifact_directory/*
-          vid: '${{ secrets.VERACODE_API_ID }}'
-          vkey: '${{ secrets.VERACODE_API_KEY }}'
+          vid: '${{ secrets.API_ID }}'
+          vkey: '${{ secrets.API_KEY }}'
           #scanpollinginterval: 30
           scantimeout: 60
           include: ${{ inputs.moddules_to_scan }}
