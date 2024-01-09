@@ -63,8 +63,7 @@ jobs:
     needs: create-checks-run
     name: Test Build
     runs-on: ubuntu-latest
-    steps:
-      shell: bash
+    - steps:
       run: |
         echo "${{ needs.create_checks_run.outputs.event_name }}"
     # needs: create-checks-run
