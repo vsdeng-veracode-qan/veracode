@@ -18,7 +18,12 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/veracode-build-${{ inputs.event_name }}.yml
+    strategy:
+      matrix:
+        scan-language:
+          - java-maven
+          - java-gradle
+    uses: ./.github/workflows/veracode-build-${{ matrix.scan-language }}.yml
     with:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
