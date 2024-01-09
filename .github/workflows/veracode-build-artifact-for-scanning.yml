@@ -18,7 +18,7 @@ on:
 
 jobs:
   build-java-maven:
-    if: ${{ inputs.event_name == 'java-maven-pipeline-scan' || inputs.event_name == 'java-maven-policy-scan' }}
+    if: ${{ inputs.event_name == 'java-maven' }}
     uses: ./.github/workflows/veracode-build-java-maven.yml
     with:
       repository: ${{ inputs.repository }}
@@ -26,7 +26,7 @@ jobs:
       token: ${{ inputs.token }}
 
   build-java-gradle:
-    if: ${{ inputs.event_name == 'java-gradle-pipeline-scan' || inputs.event_name == 'java-gradle-policy-scan' }}
+    if: ${{ inputs.event_name == 'java-gradle' }}
     uses: ./.github/workflows/veracode-build-java-gradle.yml
     with:
       repository: ${{ inputs.repository }}
@@ -34,7 +34,7 @@ jobs:
       token: ${{ inputs.token }}
 
   build-source-code-scan:
-    if: ${{ inputs.event_name == 'source-code-pipeline-scan' || inputs.event_name == 'source-code-policy-scan' }}
+    if: ${{ inputs.event_name == 'source-code' }}
     uses: ./.github/workflows/veracode-build-source-code.yml
     with:
       repository: ${{ inputs.repository }}
@@ -42,7 +42,7 @@ jobs:
       token: ${{ inputs.token }}
 
   build-dot-net-package:
-    if: ${{ inputs.event_name == 'dot-net-pipeline-scan' || inputs.event_name == 'dot-net-policy-scan' }}
+    if: ${{ inputs.event_name == 'dot-net' }}
     uses: ./.github/workflows/veracode-build-dot-net.yml
     with:
       repository: ${{ inputs.repository }}
@@ -50,7 +50,7 @@ jobs:
       token: ${{ inputs.token }}
 
   build-go-package:
-    if: ${{ inputs.event_name == 'go-pipeline-scan' || inputs.event_name == 'go-policy-scan' }}
+    if: ${{ inputs.event_name == 'go' }}
     uses: ./.github/workflows/veracode-build-go.yml
     with:
       repository: ${{ inputs.repository }}
@@ -58,7 +58,7 @@ jobs:
       token: ${{ inputs.token }}
 
   build-dart-package:
-    if: ${{ inputs.event_name == 'dart-pipeline-scan' || inputs.event_name == 'dart-policy-scan' }}
+    if: ${{ inputs.event_name == 'dart' }}
     uses: ./.github/workflows/veracode-build-dart.yml
     with:
       repository: ${{ inputs.repository }}
