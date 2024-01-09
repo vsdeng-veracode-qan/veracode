@@ -7,16 +7,22 @@ on:
     types:
       - java-maven-pipeline-scan
       - java-gradle-pipeline-scan
-      - source-code-pipeline-scan,
-      - dot-net-pipeline-scan,
-      - dot-net-policy-scan,
-      - java-maven-policy-scan,
-      - java-gradle-policy-scan,
-      - source-code-policy-scan,
-      - go-policy-scan,
-      - go-pipeline-scan,
-      - dart-policy-scan,
+      - source-code-pipeline-scan
+      - dot-net-pipeline-scan
+      - dot-net-policy-scan
+      - java-maven-policy-scan
+      - java-gradle-policy-scan
+      - source-code-policy-scan
+      - go-policy-scan
+      - go-pipeline-scan
+      - dart-policy-scan
       - dart-pipeline-scan
+      - php-pipeline-scan
+      - php-policy-scan
+      - tsql-pipeline-scan
+      - tsql-policy-scan
+      - plsql-pipeline-scan
+      - plsql-policy-scan
 
 jobs:
   create-checks-run:
