@@ -66,7 +66,7 @@ jobs:
       repository: ${{ github.event.client_payload.repository.full_name }}
       ref: ${{ github.event.client_payload.sha }}
       token: ${{ github.event.client_payload.token }}
-      event_name: ${{ env.EVENT_NAME }}
+      event_name: ${{ EVENT_NAME }}
     secrets: inherit
 
   pipeline_scan:
