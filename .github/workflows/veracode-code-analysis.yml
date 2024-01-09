@@ -57,7 +57,7 @@ jobs:
           event_name=${event_name%-*} # Remove -scan
           event_name=${event_name%-*} # Remove one more time to get rid of the "-policy" or "-pipeline"
           echo "Extracted Language: $event_name"
-          echo "EVENT_NAME=$event_name" >> $GITHUB_ENV
+          echo "::set-output name=event_name::$event_name"
 
   build:
     needs: create-checks-run
@@ -66,7 +66,7 @@ jobs:
       repository: ${{ github.event.client_payload.repository.full_name }}
       ref: ${{ github.event.client_payload.sha }}
       token: ${{ github.event.client_payload.token }}
-      event_name: ${{ EVENT_NAME }}
+      event_name: ${{ needs.create-checks-run.outputs.event_name }}
     secrets: inherit
 
   pipeline_scan:
