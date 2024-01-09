@@ -24,6 +24,8 @@ jobs:
   create-checks-run:
     name: Create Checks Run
     runs-on: ubuntu-latest
+    outputs:
+      event_name: ${{ steps.extract_language_and_build.outputs.event_name }}
     steps:
       - uses: veracode/veracode-checks-action@main
         name: Create Checks Run
