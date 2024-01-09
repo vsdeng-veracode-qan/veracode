@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "Extracting language and build information"
           echo "${{ github.event.action }}"
-          echo "Extracted Language: ${{ github.event_name =~ '.*-(.*?)-[^-]+$' && regex_replace('.*-(.*?)-[^-]+$', '$1') }}"
+          echo "Extracted Language: ${{ github.event.action =~ '.*-(.*?)-[^-]+$' && regex_replace('.*-(.*?)-[^-]+$', '$1') }}"
           echo "::set-output name=build::${{ github.event.action }}"
 
   build:
