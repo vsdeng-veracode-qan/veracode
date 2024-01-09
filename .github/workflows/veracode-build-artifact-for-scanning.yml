@@ -23,7 +23,7 @@ jobs:
       - name: get event-name
         run: echo ${{ inputs.event_name }}
   build-java-maven:
-    if: ${{ inputs.event_name == 'java-maven-pipeline-scan' || inputs.event_name == 'java-maven-policy-scan' }}
+    if: ${{ inputs.event_name == 'java-maven' }}
     uses: ./.github/workflows/veracode-build-java-maven.yml
     with:
       repository: ${{ inputs.repository }}
