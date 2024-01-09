@@ -64,7 +64,9 @@ jobs:
     name: Test Build
     runs-on: ubuntu-latest
     steps:
-      run: "echo ${{ needs.create_checks_run.outputs.event_name }}"
+      shell: bash
+      run: |
+        echo "${{ needs.create_checks_run.outputs.event_name }}"
     # needs: create-checks-run
     # uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
     # with:
