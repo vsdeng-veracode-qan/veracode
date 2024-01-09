@@ -25,7 +25,7 @@ jobs:
     name: Create Checks Run
     runs-on: ubuntu-latest
     steps:
-      - uses: vincent-deng/veracode-checks-action-ts@main
+      - uses: veracode/veracode-checks-action@main
         name: Create Checks Run
         id: create_checks_run
         with:
@@ -49,6 +49,12 @@ jobs:
         with:
           name: workflow-metadata
           path: workflow-metadata.json
+      - name: Extract Language and Build
+        id: extract_language_and_build
+        run: |
+          echo "Extracting language and build information"
+          echo "${{ github.event.action }}"
+          echo "::set-output name=build::${{ github.event.action }}"
 
   build:
     needs: create-checks-run

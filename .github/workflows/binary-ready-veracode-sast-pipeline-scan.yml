@@ -11,7 +11,7 @@ jobs:
     name: Create Checks Run
     runs-on: ubuntu-latest
     steps:
-    - uses: LouisBrunner/checks-action@v1.6.2
+    - uses: veracode/veracode-checks-action@main
       name: Create Checks Run
       id: create_checks_run
       with:
@@ -55,8 +55,8 @@ jobs:
       id: pipeline-scan
       uses: veracode/Veracode-pipeline-scan-action@v1.0.10
       with:
-        vid: ${{ secrets.API_ID }}
-        vkey: ${{ secrets.API_KEY }}
+        vid: ${{ secrets.VERACODE_API_ID }}
+        vkey: ${{ secrets.VERACODE_API_KEY }}
         file: ./veracode-artifact/${{ env.veracode_artifact }}
         fail_build: true
-        include: bin/Verademo-dotnet.dll
+        # include: bin/Verademo-dotnet.dll

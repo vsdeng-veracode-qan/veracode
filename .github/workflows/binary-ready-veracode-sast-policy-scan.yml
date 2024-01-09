@@ -11,7 +11,7 @@ jobs:
     name: Create Checks Run
     runs-on: ubuntu-latest
     steps:
-      - uses: LouisBrunner/checks-action@v1.6.2
+      - uses: veracode/veracode-checks-action@main
         name: Create Checks Run
         id: create_checks_run
         with:
@@ -55,8 +55,8 @@ jobs:
         uses: veracode/uploadandscan-action@v0.1.0
         id: upload_and_scan
         with:
-          vid: '${{ secrets.API_ID }}'
-          vkey: '${{ secrets.API_KEY }}'
+          vid: '${{ secrets.VERACODE_API_ID }}'
+          vkey: '${{ secrets.VERACODE_API_KEY }}'
           appname: ${{ github.event.client_payload.profile_name }}
           createprofile: true
           version: '${{ github.run_id }}'
