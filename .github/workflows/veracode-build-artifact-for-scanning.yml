@@ -17,6 +17,11 @@ on:
         type: string
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get event-name
+        run: echo ${{ inputs.event_name}}
   build-java-maven:
     if: ${{ inputs.event_name == 'java-maven-pipeline-scan' || inputs.event_name == 'java-maven-policy-scan' }}
     uses: ./.github/workflows/veracode-build-java-maven.yml
