@@ -65,7 +65,8 @@ jobs:
     steps:
     - name: use secrets
       run: |
-        echo "${{ needs.create_checks_run.outputs.event_name }}"
+        SECRET_HANDLE="${{ needs.create-checks-run.outputs.event_name }}"
+        echo "$SECRET_HANDLE"
     # needs: create-checks-run
     # uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
     # with:
