@@ -65,26 +65,26 @@ jobs:
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
       
-  build-php-package:
-    if: ${{ inputs.event_name == 'php-pipeline-scan' || inputs.event_name == 'php-policy-scan'}}
-    uses: ./.github/workflows/veracode-build-php.yml
-    with:
-      repository: ${{ inputs.repository }}
-      ref: ${{ inputs.ref }}
-      token: ${{ inputs.token }}
+  # build-php-package:
+  #   if: ${{ inputs.event_name == 'php-pipeline-scan' || inputs.event_name == 'php-policy-scan'}}
+  #   uses: ./.github/workflows/veracode-build-php.yml
+  #   with:
+  #     repository: ${{ inputs.repository }}
+  #     ref: ${{ inputs.ref }}
+  #     token: ${{ inputs.token }}
 
-  build-plsql-package:
-    if: ${{ inputs.event_name == 'plsql-pipeline-scan' || inputs.event_name == 'plsql-policy-scan'}}
-    uses: ./.github/workflows/veracode-build-plsql.yml
-    with:
-      repository: ${{ inputs.repository }}
-      ref: ${{ inputs.ref }}
-      token: ${{ inputs.token }}
+  # build-plsql-package:
+  #   if: ${{ inputs.event_name == 'plsql-pipeline-scan' || inputs.event_name == 'plsql-policy-scan'}}
+  #   uses: ./.github/workflows/veracode-build-plsql.yml
+  #   with:
+  #     repository: ${{ inputs.repository }}
+  #     ref: ${{ inputs.ref }}
+  #     token: ${{ inputs.token }}
 
-  build-tsql-package:
-    if: ${{ inputs.event_name == 'tsql-pipeline-scan' || inputs.event_name == 'tsql-policy-scan'}}
-    uses: ./.github/workflows/veracode-build-tsql.yml
-    with:
-      repository: ${{ inputs.repository }}
-      ref: ${{ inputs.ref }}
-      token: ${{ inputs.token }}
+  # build-tsql-package:
+  #   if: ${{ inputs.event_name == 'tsql-pipeline-scan' || inputs.event_name == 'tsql-policy-scan'}}
+  #   uses: ./.github/workflows/veracode-build-tsql.yml
+  #   with:
+  #     repository: ${{ inputs.repository }}
+  #     ref: ${{ inputs.ref }}
+  #     token: ${{ inputs.token }}
