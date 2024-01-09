@@ -60,10 +60,10 @@ jobs:
           echo "event_name=$event_name" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: create-checks-run
-    name: Test Build
     runs-on: ubuntu-latest
-    - steps:
+    needs: create-checks-run
+    steps:
+    - name: use secrets
       run: |
         echo "${{ needs.create_checks_run.outputs.event_name }}"
     # needs: create-checks-run
