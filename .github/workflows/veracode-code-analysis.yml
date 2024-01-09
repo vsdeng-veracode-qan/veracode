@@ -56,9 +56,6 @@ jobs:
           echo "${{ github.event.action }}" | cut -d'-' -f1-2 > language.txt
           LANGUAGE=$(cat language.txt)  # Store in a variable
           echo "Building for $LANGUAGE project"
-          # echo "${{ github.event.action }}"
-          # echo "Extracted Language: ${{ github.event.action =~ '.*-(.*?)-[^-]+$' && regex_replace('.*-(.*?)-[^-]+$', '$1') }}"
-          # echo "::set-output name=build::${{ github.event.action }}"
 
   build:
     needs: create-checks-run
