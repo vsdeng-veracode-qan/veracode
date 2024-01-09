@@ -61,13 +61,18 @@ jobs:
 
   build:
     needs: create-checks-run
-    uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
-    with:
-      repository: ${{ github.event.client_payload.repository.full_name }}
-      ref: ${{ github.event.client_payload.sha }}
-      token: ${{ github.event.client_payload.token }}
-      event_name: ${{ needs.create_checks_run.outputs.event_name }}
-    secrets: inherit
+    name: Test Build
+    runs-on: ubuntu-latest
+    steps:
+      run: "echo ${{ needs.create_checks_run.outputs.event_name }}"
+    # needs: create-checks-run
+    # uses: ./.github/workflows/veracode-build-artifact-for-scanning.yml
+    # with:
+    #   repository: ${{ github.event.client_payload.repository.full_name }}
+    #   ref: ${{ github.event.client_payload.sha }}
+    #   token: ${{ github.event.client_payload.token }}
+    #   event_name: ${{ needs.create_checks_run.outputs.event_name }}
+    # secrets: inherit
 
   pipeline_scan:
     # needs the build step before this job will start running
