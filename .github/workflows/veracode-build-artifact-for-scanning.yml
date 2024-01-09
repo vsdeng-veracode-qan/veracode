@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/veracode-build-${{ event_name }}.yml
+    uses: ./.github/workflows/veracode-build-${{ inputs.event_name }}.yml
     with:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
