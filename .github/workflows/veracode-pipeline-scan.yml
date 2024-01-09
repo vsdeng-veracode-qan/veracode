@@ -33,4 +33,4 @@ jobs:
           vkey: ${{ secrets.VERACODE_API_KEY }}
           file: ./veracode_artifact_directory/${{ env.veracode_artifact }}
           fail_build: true
-          include: Verademo-dotnet.dll
+          # include: Verademo-dotnet.dll
