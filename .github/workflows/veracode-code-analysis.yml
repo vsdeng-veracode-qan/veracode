@@ -54,9 +54,8 @@ jobs:
         run: |
           echo "Extracting language and build information"
           event_name=${{ github.event.action }}
-          if [[ $event_name == *"-pipeline-scan" || $event_name == *"-policy-scan" ]]; then
-            event_name=${event_name%-*}
-          fi
+          event_name=${event_name%-*}
+          event_name=${event_name%-*}
           echo "Extracted Language: $event_name"
 
   build:
